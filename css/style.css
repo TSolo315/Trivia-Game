@@ -1,0 +1,331 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300);
+@import url(https://fonts.googleapis.com/css?family=Squada+One);
+
+/* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
+html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}
+article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}
+audio,canvas,progress,video{display:inline-block}progress{vertical-align:baseline}
+audio:not([controls]){display:none;height:0}[hidden],template{display:none}
+a{background-color:transparent;-webkit-text-decoration-skip:objects}
+a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}
+dfn{font-style:italic}mark{background:#ff0;color:#000}
+small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sub{bottom:-0.25em}sup{top:-0.5em}figure{margin:1em 40px}img{border-style:none}svg:not(:root){overflow:hidden}
+code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}hr{box-sizing:content-box;height:0;overflow:visible}
+button,input,select,textarea{font:inherit;margin:0}optgroup{font-weight:bold}
+button,input{overflow:visible}button,select{text-transform:none}
+button,html [type=button],[type=reset],[type=submit]{-webkit-appearance:button}
+button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner{border-style:none;padding:0}
+button:-moz-focusring, [type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring{outline:1px dotted ButtonText}
+fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em}
+legend{color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}
+[type=checkbox],[type=radio]{padding:0}
+[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}
+[type=search]{-webkit-appearance:textfield;outline-offset:-2px}
+[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}
+::-webkit-input-placeholder{color:inherit;opacity:0.54}
+::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
+/* End extract */
+
+html,
+body {
+  color: #000;
+  background: #eee;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  line-height: 1.6em;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  min-width: 500px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+  width: calc(100% - 32px);
+  max-width: 1170px;
+  margin: 0 auto;
+  border: 0;
+  background-color: #eee
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+#header {
+  width: 100%;
+}
+
+#quiz-title {
+  font-family: 'Open Sans', sans-serif;
+  color: orangered;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 150px;
+  font-weight: 800;
+  letter-spacing: -3px;
+  line-height: 1;
+  text-shadow: orange 3px 2px 0;
+  position: relative; 
+  left: calc(50% - 275px);
+  transform: translateX(0%);
+}
+
+#quiz-title:after {
+  content:"Trivial";
+  position: absolute;
+  left: 6.5px;
+  top: 31px;
+}
+
+#quiz-title:after {
+  background-image: -webkit-linear-gradient(left top, transparent 0%, transparent 25%, orange 25%, orangered 50%, transparent 50%, transparent 75%, orange 75%);
+  background-size: 4px 4px;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  z-index: -5;
+  display: block;
+  text-shadow: none;
+}
+
+.cards {
+  position: relative;  
+  list-style-type: none;
+  padding: 0;
+  margin-top: 3em;
+  margin-bottom: 5em;
+  max-width: 34em;
+  max-height: 10em;
+}
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: orangered;
+  color: orangered;
+  border-radius: 30px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 0 5px #000;
+  transform: translateY(0) rotate(4deg) translateX(25px) scale(1);
+  transform-origin: 0 0;
+  
+  transition: transform 0.65s cubic-bezier(.8,.2,.1,0.8) 0.1s,
+    background 0.4s linear;
+  
+  user-select: none;
+}
+
+.card:last-child { margin-bottom: 0; }
+
+.card--next { 
+  z-index: 5; 
+  transform: translateY(-25px) rotate(4.5deg) translateX(28px) scale(1);
+  background: #000;
+  color: black;
+}
+
+.card--out {
+  animation: card-out 0.6s cubic-bezier(.8,.2,.1,0.8);
+  transform: translateY(-47px) rotate(7.5deg) translateX(52px) scale(0.95);
+  z-index: 1;
+  background: orangered;
+}
+
+@keyframes card-out {
+  0% { z-index: 20; transform: translateY(0px) rotate(-4deg); }
+  50% { transform: translateY(-120%) rotate(-5deg) translateX(-40px); }
+  80% { z-index: 1; }
+  100% { transform: translateY(-47px) rotate(7.5deg) translateX(52px) scale(0.95); }
+}
+
+.card--current {
+  cursor: auto;
+  user-select: auto;
+  position: relative;
+  z-index: 10;
+  opacity: 1;
+  background: orange;
+  color: black;
+  transform: rotate(-.8deg) translateX(0%) scale(1);
+}
+
+/* Answers */
+
+.answers {
+  list-style: none;
+  margin-bottom: 0;
+  margin-top: 2em;
+  width: 100%;
+}
+
+.answer {
+  font-size: 26px;
+  font-weight: 600;
+  font-family: "Squada One", sans-serif;
+  padding: .5em;
+  color: orange;
+  text-align: center;
+  background-color: #000;
+  line-height: 1.4em;
+  margin-right: 1.5em;
+  margin-bottom: 1.5em;
+  width: calc(40% - 3em)!important;
+  min-height: 2em;
+  border-style: double;
+  border-radius: 16px;
+  border-width: 2px;
+  border-color: orangered;
+  cursor: pointer;
+  user-select: none;
+  
+  opacity: 1;
+  -moz-transition: opacity, transform;
+  -webkit-transition: opacity, transform;
+  -o-transition: opacity, transform;
+  transition: opacity, transform;
+  transition-duration: 475ms;
+  transition-timing-function: ease-out;
+}
+
+.new-hidden {
+  opacity: 0;
+  transform: translateX(-250px);
+}
+
+.answer:hover {
+  box-shadow: 0 0 6px #000;
+}
+
+.answer-success {
+  background-color: rgb(40, 163, 40);
+  border-color: rgb(40, 163, 40);
+}
+
+.answer-failure {
+  background-color: red;
+  border-color: red;
+}
+
+.actual-correct-answer {
+  border-color: rgb(40, 163, 40);
+  border-style: dashed;
+}
+
+.scoreboard {
+  margin-top: 0;
+  font-weight: 750;
+  font-size: 1.2em;
+}
+
+/* Overlay style */
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(83, 77, 72, 0.9);
+  z-index: 100;
+}
+
+/* Menu style */
+
+.overlay .modal {
+  /* font-family: "Squada One", sans-serif; */
+  font-size: 30px;
+  font-weight: 650;
+  color: rgb(250, 114, 24);
+  background-color: black;
+  border: 3px solid #000;
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  margin: 0 auto;
+  padding: .5em .5em 1em .5em;
+  height: 50%;
+  width: 40%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.overlay div h1 {
+  font-weight: 1000;
+  font-size: 42px;
+  margin-bottom: 1.5em;
+}
+
+.overlay .modal > .grad-button {
+  text-align: center;
+  max-width: 50%;
+  margin-top: 2em;
+}
+
+/* Effects */
+
+.overlay-slidedown {
+  visibility: hidden;
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+  -webkit-transition: -webkit-transform 0.4s ease-in-out, visibility 0s 0.4s;
+  transition: transform 0.4s ease-in-out, visibility 0s 0.4s;
+}
+
+.overlay-slidedown.open {
+  visibility: visible;
+  -webkit-transform: translateY(0%);
+  transform: translateY(0%);
+  -webkit-transition: -webkit-transform 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out;
+}
+
+@media screen and (max-height: 30.5em) {
+  .overlay .modal {
+      height: 70%;
+      font-size: 34px;
+  }
+  .overlay ul li {
+      min-height: 34px;
+  }
+}
+
+.category-selection {
+  text-align: center;
+}
+
+.category-selection h2 {
+  font-family: "Squada One", sans-serif;
+  font-size: 36px;
+  color: orangered;
+  font-weight: 800;
+}
+
+.grad-button {
+  font-size: 22px;
+  font-weight: 720;
+  display: inline-block;
+  width: 12em;
+  padding: 1em .5em 1em .5em;
+  margin: 1em;
+  background-image: linear-gradient(to bottom right, orange , orangered);
+  color: #000;
+  border: 2px solid #000;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.grad-button:hover {
+  box-shadow: 0 0 3px #000;
+}

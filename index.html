@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quiz Game</title>
+  <meta name="author" content="Tyler Solosko">
+  <meta name="description" content="This is a quiz game.">
+  <link rel="stylesheet" href="css/flexboxstyle.css" type="text/css">
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+  </head>
+  <body>
+    <!-- Title -->
+    <header id="header">
+      <a href="#" id="quiz-title">Trivial</a>
+    </div>
+    <!-- Category Selection -->
+    <div class="container category-selection">
+      <h2>Choose your category:</h2>
+      <a class="grad-button" href="#" id="music-category-button" data-category='Music'>Music</a>
+      <a class="grad-button" href="#" id="animals-category-button" data-category='Animals'>Animals</a>
+      <br />
+      <a class="grad-button" href="#" id="3-category-button" data-category='Food' >Food</a>
+      <a class="grad-button" href="#" id="4-category-button" data-category='Sports'>Sports</a>
+    </div>
+    <section class="container flex-container-center-column">
+      <!-- Question cards -->
+        <div>
+          <ul class="cards">
+          </ul>
+        </div>
+      <!-- Answers -->
+        <div class="container">
+          <ul class="answers flex-container-row flex-add-wrap flex-justify-center">
+          </ul>
+        </div>
+        <div class="scoreboard hidden">
+          <p id ="score">Score: 0</p>
+        </div>
+    </section>
+    <!-- Quiz-end Slidedown Overlay -->
+		<div class="overlay overlay-slidedown">
+			<div class="modal">
+        <h1>Success!</h1>
+        <!-- <h4>Stats:</h4> -->
+        <p id="quiz-score"></p>
+        <p id="quiz-accuracy"></p>
+        <p id="quiz-grade"></p>
+        <a class="grad-button" id="play-again">Play Again</a>
+			</div>
+		</div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
